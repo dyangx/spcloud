@@ -45,6 +45,6 @@ public class UserController {
     public void logUserInstance(){
         ServiceInstance serviceInstance = loadBalancerClient.choose("micro-provider-movie");
         String s = serviceInstance.getServiceId() + serviceInstance.getHost() +serviceInstance.getPort();
-        System.out.printf(s);
+        System.out.println(s);
     }
 }
