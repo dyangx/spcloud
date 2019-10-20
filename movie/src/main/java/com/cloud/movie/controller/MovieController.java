@@ -16,7 +16,7 @@ public class MovieController{
     private String port;
 
     @RequestMapping("/getMovie")
-    public Movie getMovie(){
+    public Object getMovie(){
         Movie m = new Movie(port,"呢抓","动画片",new Date());
         return m;
     }
