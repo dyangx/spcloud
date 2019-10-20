@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 /**
  * 负载均衡配置
  */
-@Configuration
+//@Configuration
 public class RibbonClientConfiguration {
 
-    @Bean
+//    @Bean
     public IRule ribbonRuble(){
 
         //随机
