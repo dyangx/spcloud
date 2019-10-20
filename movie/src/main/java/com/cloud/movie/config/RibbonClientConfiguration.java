@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * 负载均衡配置
+ *
  */
 //@Configuration
 public class RibbonClientConfiguration {
