@@ -21,6 +21,6 @@ public class UserController {
 
     @RequestMapping(value = "/getMovieFromUser",produces = "application/json")
     public Object getMovie(){
-        return restTemplate.getForObject("http://localhost:8082/movie/getMovie",Object.class);
+        return restTemplate.getForObject("http://micro-provider-movie/movie/getMovie",Object.class);
     }
 }
