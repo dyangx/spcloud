@@ -19,7 +19,7 @@ public class UserController {
         return u;
     }
 
-    @RequestMapping("/getMovieFromUser")
+    @RequestMapping(value = "/getMovieFromUser",produces = "application/json")
     public Object getMovie(){
         return restTemplate.getForObject("http://localhost:8082/movie/getMovie",Object.class);
     }
