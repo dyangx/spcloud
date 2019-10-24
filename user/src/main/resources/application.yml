@@ -16,3 +16,7 @@ eureka:
 micro-provider-movie:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+# feign 日志配置
+logging:
+  level:
+    com.cloud.user.feign.MoviefeignClient: DEBUG

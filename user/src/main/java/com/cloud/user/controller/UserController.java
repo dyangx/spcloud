@@ -1,5 +1,6 @@
 package com.cloud.user.controller;
 
+import com.cloud.user.feign.MoviefeignClient;
 import com.cloud.user.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
@@ -23,6 +25,9 @@ public class UserController {
 
     @Autowired
     private LoadBalancerClient loadBalancerClient;
+
+    @Resource
+    private MoviefeignClient moviefeignClient;
 
     @RequestMapping("/getUser")
     public User getUser(){
@@ -46,5 +51,10 @@ public class UserController {
         ServiceInstance serviceInstance = loadBalancerClient.choose("micro-provider-movie");
         String s = serviceInstance.getServiceId() + serviceInstance.getHost() +serviceInstance.getPort();
         System.out.println(s);
+    }
+
+    @RequestMapping("/getMoiveFromFeign")
+    public Object getMoiveFromFeign(){
+        return moviefeignClient.getMovie();
     }
 }
