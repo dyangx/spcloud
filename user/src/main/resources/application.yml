@@ -20,3 +20,8 @@ micro-provider-movie:
 logging:
   level:
     com.cloud.user.feign.MoviefeignClient: DEBUG
+
+management:
+  endpoint:
+    health:
+      show-details: always

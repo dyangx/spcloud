@@ -15,8 +15,12 @@ public class MovieController{
     private String port;
 
     @RequestMapping("/getMovie")
-    public Object getMovie(){
+    public Object getMovie() throws InterruptedException {
         Movie m = new Movie(port,"呢抓","动画片",new Date());
+//        Thread.sleep(8000);
+//        if(true) {
+//            throw new RuntimeException("123");
+//        }
         return m;
     }
 }
