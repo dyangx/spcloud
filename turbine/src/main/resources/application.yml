@@ -1,0 +1,14 @@
+server:
+  port: 8020
+spring:
+  application:
+    name: micro-hystrix-tuebine
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+turbine:
+  app-config-list: micro-provider-movie,micro-provider-user
+  cluster-name-expression: "'default'"
