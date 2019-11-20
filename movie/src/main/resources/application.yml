@@ -5,6 +5,11 @@ spring:
   application:
     # 注册到 Eureka Server 的名称
     name: micro-provider-movie
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 eureka:
   instance:
     # true 将自己ip注册到 Eureka Server上，false 将hostname注册到Eureka Server上，默认false
