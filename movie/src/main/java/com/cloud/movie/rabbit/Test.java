@@ -32,7 +32,8 @@ public class Test {
         channel.queueDeclare(QUEUE_NAME,DURABLE,false,false,null);
 
         //推送消息
-        for (String s : msgs){
+        for (int i=0;i<1000000;i++){
+            String s = "小消息："+i;
             channel.basicPublish("",QUEUE_NAME,null,s.getBytes());
             System.out.println("已推送消息："+s);
         }
