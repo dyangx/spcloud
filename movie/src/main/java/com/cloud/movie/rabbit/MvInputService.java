@@ -2,6 +2,7 @@ package com.cloud.movie.rabbit;
 
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,13 +13,14 @@ import org.springframework.stereotype.Component;
 @EnableBinding(MvOutput.class)
 public class MvInputService {
 
-    @StreamListener(value = MvOutput.MV_OUTPUT1)
+/*    @StreamListener(value = MvOutput.MV_OUTPUT1)
+    @SendTo(MvOutput.MV_OUTPUT1)/
     public void sendMessage1(String msg){
         System.out.println("1已推送消息:"+msg);
-    }
+    }*/
 
-    @StreamListener(value = MvOutput.MV_OUTPUT2)
-    public void sendMessage2(String msg){
-        System.out.println("2已推送消息:"+msg);
-    }
+//    @StreamListener(value = MvOutput.MV_OUTPUT2)
+//    public void sendMessage2(String msg){
+//        System.out.println("2已推送消息:"+msg);
+//    }
 }

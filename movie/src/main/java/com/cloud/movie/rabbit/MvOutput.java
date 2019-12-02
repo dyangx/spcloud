@@ -10,12 +10,8 @@ import org.springframework.messaging.SubscribableChannel;
  */
 
 public interface MvOutput {
-    String MV_OUTPUT1 = "output1";
-    String MV_OUTPUT2 = "output2";
+    String MV_OUTPUT1 = "mv_msg11";
 
     @Output(MV_OUTPUT1)
     SubscribableChannel output1();
-
-    @Output(MV_OUTPUT2)
-    SubscribableChannel output2();
 }

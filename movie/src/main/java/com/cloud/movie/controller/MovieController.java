@@ -32,8 +32,8 @@ public class MovieController{
     @RequestMapping("/pushMsg")
     public Object pushMsg(){
         for (int i=0;i<10;i++){
-            mvInputService.sendMessage1("来自msg1");
-            mvInputService.sendMessage2("来自msg2");
+//            mvInputService.sendMessage1("来自msg1");
+//            mvInputService.sendMessage2("来自msg2");
         }
         return "推送消息成功！";
     }

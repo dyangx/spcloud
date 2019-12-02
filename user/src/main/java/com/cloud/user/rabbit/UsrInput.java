@@ -1,7 +1,9 @@
 package com.cloud.user.rabbit;
 
+import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.SubscribableChannel;
 
 /**
  * 接受通道
@@ -9,8 +11,11 @@ import org.springframework.messaging.MessageChannel;
  * @date: Created in 2019/11/20 17:50
  */
 public interface UsrInput {
-    String USR_INPUT = "input";
+    String USR_INPUT = "mv_msg11";
 
-    @Output(value = USR_INPUT)
-    MessageChannel input();
+    @Input(value = USR_INPUT)
+    SubscribableChannel input();
+
+    @Input(value = "hello_rabbit")
+    SubscribableChannel input2();
 }
