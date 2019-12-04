@@ -31,7 +31,7 @@ public class Test {
         new Test().basicPublish(connection);
     }
 
-    // 推模式获取消息
+    // 拉模式获取消息
     private void basicGet(Connection connection){
         try (final Channel channel = connection.createChannel()) {
             GetResponse getResponse = channel.basicGet(QUEUE_NAME,false);
@@ -72,7 +72,7 @@ public class Test {
             };
             // 需要消费消息确认
             boolean autoAck = false;
-            // 每次只处理消息个数
+            // 每次只处理消息个数 ，在这里不起作用，只有在拉模式下才起作用
             channel.basicQos(10);
             channel.basicConsume(QUEUE_NAME,autoAck,consumer);
 //            connection.close();
