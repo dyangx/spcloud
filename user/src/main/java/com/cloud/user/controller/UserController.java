@@ -86,4 +86,6 @@ public class UserController {
         map.put("date",new Date());
         return map;
     }
+
+    //zuul http://localhost:8040/micro-provider-user/user/getMoiveFromFeignWithHystrix
 }
