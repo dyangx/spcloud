@@ -1,0 +1,28 @@
+#server:
+#  port: 8070
+#
+#spring:
+#  application:
+#    # 注册到 Eureka Server 的名称
+#    name: micro-provider-gateway
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+#    cloud:
+#      gateway:
+#        routes:
+#          - id: micro-provider-movie
+#            # lb代表从注册中心获取服务
+#            uri: lb://MICRO-PROVIDER-MOVIE
+#            predicates:
+#              - Path=/movie/**
+#eureka:
+#  instance:
+#    # true 将自己ip注册到 Eureka Server上，false 将hostname注册到Eureka Server上，默认false
+#    prefer-ip-address: true
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#
