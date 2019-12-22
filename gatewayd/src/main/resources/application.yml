@@ -4,24 +4,35 @@ server:
 
 spring:
   application:
-    # ×¢²áµ½ Eureka Server µÄÃû³Æ
+    # æ³¨å†Œåˆ° Eureka Server çš„åç§°
     name: micro-provider-gateway
   rabbitmq:
     host: localhost
     port: 5672
     username: guest
     password: guest
-    cloud:
-      gateway:
-        routes:
-          - id: micro-provider-movie
-            # lb´ú±í´Ó×¢²áÖĞĞÄ»ñÈ¡·şÎñ
-            uri: lb://MICRO-PROVIDER-MOVIE
-            predicates:
-              - Path=/movie/**
+  cloud:
+    gateway:
+      routes:
+        - id: movie
+#            # lbä»£è¡¨ä»æ³¨å†Œä¸­å¿ƒè·å–æœåŠ¡
+          uri: lb://MICRO-PROVIDER-MOVIE
+          predicates:
+            - Path=/movie/**
+          filters:
+            - StripPrefix=0
+        - id: user
+          # lbä»£è¡¨ä»æ³¨å†Œä¸­å¿ƒè·å–æœåŠ¡
+          uri: lb://MICRO-PROVIDER-USER
+          predicates:
+            - Path=/user/**
+          filters:
+            - StripPrefix=0
+
+
 eureka:
   instance:
-    # true ½«×Ô¼ºip×¢²áµ½ Eureka ServerÉÏ£¬false ½«hostname×¢²áµ½Eureka ServerÉÏ£¬Ä¬ÈÏfalse
+    # true å°†è‡ªå·±ipæ³¨å†Œåˆ° Eureka Serverä¸Šï¼Œfalse å°†hostnameæ³¨å†Œåˆ°Eureka Serverä¸Šï¼Œé»˜è®¤false
     prefer-ip-address: true
   client:
     service-url:
