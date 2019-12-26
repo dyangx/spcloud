@@ -16,10 +16,10 @@ public class AuthFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String token = exchange.getRequest().getQueryParams().getFirst("authToken");
-        if (token == null || token.isEmpty()) {
+        /*if (token == null || token.isEmpty()) {
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
-        }
+        }*/
         return chain.filter(exchange);
     }
 

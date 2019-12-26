@@ -2,6 +2,10 @@ server:
   port: 8081
 
 spring:
+  security:
+    user:
+      name: admin
+      password: admin
   application:
     # 注册到 Eureka Server 的名称
     name: micro-provider-user
