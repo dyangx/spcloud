@@ -1,7 +1,12 @@
 server:
-  port: 8092
+  port: 8082
 
 spring:
+  #basic 认证 账户密码
+  security:
+    user:
+      name: admin
+      password: admin
   application:
     # 注册到 Eureka Server 的名称
     name: micro-provider-movie
