@@ -1,15 +1,11 @@
 
-
-mybatis-plus:
-  mapper-locations: classpath*:/com/cloud/user/mapper/xml/*.xml
-
 # DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cloud?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://152.136.190.118:33061/spcloud?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
     username: root
-    password: 123456
+    password: mysql88
 
     # Tomcat datasource specific settings
     # org.apache.tomcat.jdbc.pool.DataSource  org.apache.tomcat.jdbc.pool.PoolProperties
@@ -45,3 +41,5 @@ spring:
       #连接多久没有释放则认为是泄漏线程
       remove-abandoned-timeout: 180
 
+mybatis-plus:
+  mapper-locations: classpath*:/com/cloud/user/mapper/xml/*.xml
