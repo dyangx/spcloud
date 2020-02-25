@@ -1,7 +1,5 @@
 package mybatisTest;
 
-import com.cloud.user.UserApplication;
-import com.cloud.user.mapper.UserMapper;
 import com.cloud.user.service.UerService;
 import com.cloud.user.vo.User;
 import org.junit.runner.RunWith;
