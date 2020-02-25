@@ -1,8 +1,21 @@
 server:
   port: 8761
 eureka:
+  server:
+    # 关闭自我保护模式,即不缓存已经失效的服务
+    enable-self-preservation: false
+    # 失效剔除间隔时间单位为ms（缺省为60*1000ms），服务失效后1秒就剔除
+    eviction-interval-timer-in-ms: 1000
+  instance:
+    # 5s未续约即过期，EurekaServer就会认为该服务宕机，会从服务列表中移除
+    lease-expiration-duration-in-seconds: 4
+    # 续约：2 秒一次
+    lease-renewal-interval-in-seconds: 2
   client:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://192.168.111.123:8761/eureka/
+      #拉取服务列表的时间间隔，每隔5秒去注册中心拉取服务列表
+    registry-fetch-interval-seconds: 2
+
