@@ -20,12 +20,10 @@ public class UserServiceImpl implements UerService {
         return userMapper.selectUser();
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void test(){
         List<User> selectUser = userMapper.selectUser();
         System.out.println(selectUser);
         User u = selectUser.get(0);
-
-
     }
 }

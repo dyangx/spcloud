@@ -1,5 +1,5 @@
 server:
-  port: 8761
+  port: 9300
 eureka:
   server:
     # 关闭自我保护模式,即不缓存已经失效的服务
@@ -15,7 +15,7 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://192.168.111.123:8761/eureka/
+      defaultZone: http://152.136.190.118/eureka/  #应该为对外ip
       #拉取服务列表的时间间隔，每隔5秒去注册中心拉取服务列表
     registry-fetch-interval-seconds: 2
 
