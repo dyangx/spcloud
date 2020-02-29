@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableFeignClients
 @MapperScan("com.cloud.user.mapper")
 //@EnableHystrix
-//@EnableCircuitBreaker
+//@EnableCircuitBreaker 熔断超时保护
 public class UserApplication {
 
     @Bean

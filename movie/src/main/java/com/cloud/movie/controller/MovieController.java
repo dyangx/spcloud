@@ -1,6 +1,7 @@
 package com.cloud.movie.controller;
 
 import com.cloud.movie.rabbit.MvInputService;
+import com.cloud.movie.service.TestService;
 import com.cloud.movie.vo.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +20,9 @@ public class MovieController{
     @Autowired
     private MvInputService mvInputService;
 
+    @Autowired
+    private TestService testService;
+
     @RequestMapping("/getMovie")
     public Object getMovie() throws InterruptedException {
         Movie m = new Movie(port,"呢抓","动画片",new Date());
@@ -36,5 +40,11 @@ public class MovieController{
 //            mvInputService.sendMessage2("来自msg2");
         }
         return "推送消息成功！";
+    }
+
+    @RequestMapping("/insert")
+    public Object insert(){
+        testService.test();
+        return "ssss";
     }
 }

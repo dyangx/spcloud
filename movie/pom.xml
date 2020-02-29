@@ -55,6 +55,16 @@
         </dependency>
 
         <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.3.1.tmp</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
@@ -105,6 +115,15 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>com/cloud/movie/mapper/test1/xml/*.xml</include>
+                    <include>com/cloud/movie/mapper/test2/xml/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
     <repositories>
@@ -114,5 +133,6 @@
             <url>https://repo.spring.io/milestone</url>
         </repository>
     </repositories>
+
 
 </project>
