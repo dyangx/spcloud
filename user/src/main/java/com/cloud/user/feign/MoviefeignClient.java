@@ -1,6 +1,7 @@
 package com.cloud.user.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,7 +16,10 @@ import java.util.Map;
 public interface MoviefeignClient {
 
     @RequestMapping("/movie/getMovie")
-    public Object getMovie();
+    Object getMovie();
+
+    @RequestMapping("/test/getHtml")
+    ResponseEntity<String> getHtml();
 }
 
 /**
@@ -30,5 +34,10 @@ class FeignClientFallback implements MoviefeignClient{
         map.put("mv","123456");
         map.put("date",new Date());
         return map;
+    }
+
+    @Override
+    public ResponseEntity<String> getHtml() {
+        return null;
     }
 }

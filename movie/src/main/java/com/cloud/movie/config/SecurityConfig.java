@@ -14,17 +14,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //开启httpbasic认证
-        http.httpBasic()
-                .and()
-                .authorizeRequests()
-                .anyRequest()
-                //所有请求都需要登录认证才能访问
-                .authenticated();
-        /** 禁用 **/
-//        http.csrf().disable()
+//        http.httpBasic()
+//                .and()
 //                .authorizeRequests()
-//                .anyRequest().permitAll()
-//                .and().logout().permitAll();
+//                .anyRequest()
+//                //所有请求都需要登录认证才能访问
+//                .authenticated();
+//        /** 禁用 **/
+        http.csrf().disable()
+                .authorizeRequests()
+                .anyRequest().permitAll()
+                .and().logout().permitAll();
 
         /** 详细配置
         http.authorizeRequests()
