@@ -1,0 +1,13 @@
+
+spring:
+  datasource:
+    test1:
+      jdbc-url : jdbc:mysql://152.136.190.118:33061/db1?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+      username: root
+      password: mysql88
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    test2:
+      jdbc-url : jdbc:mysql://152.136.190.118:33061/db2?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+      username: root
+      password: mysql88
+      driver-class-name: com.mysql.cj.jdbc.Driver
