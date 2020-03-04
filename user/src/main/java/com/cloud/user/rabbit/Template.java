@@ -16,8 +16,17 @@ public class Template {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    private final static String EXCHANGE = "exchange2020";
+    private final static String ROUTINGKEY = "key2020";
+
+
+
     @PostConstruct
     public void test(){
-        System.out.println("*******************"+ rabbitTemplate);
+        int x = 0;
+        while (x <= 5){
+            x++;
+            rabbitTemplate.convertAndSend("",ROUTINGKEY,"message：" + x);
+        }
     }
 }

@@ -24,7 +24,7 @@ eureka:
     service-url:
       defaultZone: http://152.136.190.118:9300/eureka/
 # 负载均衡配置
-micro-provider-movie:
+micro-provider-user:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 # feign 日志配置
