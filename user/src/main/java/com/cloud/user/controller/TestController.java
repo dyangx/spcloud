@@ -23,4 +23,15 @@ public class TestController {
     public ResponseEntity<String> getHtml(){
         return moviefeignClient.getHtml();
     }
+
+    @RequestMapping("/thread")
+    public ResponseEntity<String> thread(){
+        int x = 0;
+        ResponseEntity<String> s = null;
+        while (x < 1){
+            s = moviefeignClient.getTestThread();
+            x++;
+        }
+        return s;
+    }
 }

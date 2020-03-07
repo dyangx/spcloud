@@ -2,6 +2,7 @@ package com.cloud.movie.controller;
 
 import com.cloud.movie.rabbit.MvInputService;
 import com.cloud.movie.service.TestService;
+import com.cloud.movie.thread.SelfThread;
 import com.cloud.movie.vo.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,4 +48,12 @@ public class MovieController{
         testService.test();
         return "ssss";
     }
+
+    @RequestMapping("/test")
+    public Object test(){
+        System.out.println("contoll--->" + SelfThread.threadLocal.get());
+        return "成功！！！！";
+    }
+
+
 }

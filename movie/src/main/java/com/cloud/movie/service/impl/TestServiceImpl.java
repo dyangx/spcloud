@@ -15,6 +15,17 @@ public class TestServiceImpl implements TestService {
     @Autowired
     private com.cloud.movie.mapper.test2.TestMapper testMapper2;
 
+    public static TestMapper mapper1;
+    public static com.cloud.movie.mapper.test2.TestMapper mapper2;
+
+    @Autowired
+    public void setValue(TestMapper m1 ,com.cloud.movie.mapper.test2.TestMapper m2){
+        TestServiceImpl.mapper1 = m1;
+        TestServiceImpl.mapper2 = m2;
+        System.out.println(TestServiceImpl.mapper1);
+        System.out.println(TestServiceImpl.mapper2);
+    }
+
 
     @Override
     @Transactional( transactionManager = "manager2")
@@ -23,5 +34,10 @@ public class TestServiceImpl implements TestService {
         testMapper2.insertValue2();
 
         throw new RuntimeException("你错了！");
+    }
+
+    @Override
+    public void test1() {
+        System.out.println(mapper1);
     }
 }

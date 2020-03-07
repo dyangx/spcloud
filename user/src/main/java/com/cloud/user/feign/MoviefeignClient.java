@@ -20,6 +20,9 @@ public interface MoviefeignClient {
 
     @RequestMapping("/test/getHtml")
     ResponseEntity<String> getHtml();
+
+    @RequestMapping("/movie/test")
+    ResponseEntity<String> getTestThread();
 }
 
 /**
@@ -38,6 +41,11 @@ class FeignClientFallback implements MoviefeignClient{
 
     @Override
     public ResponseEntity<String> getHtml() {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<String> getTestThread() {
         return null;
     }
 }
