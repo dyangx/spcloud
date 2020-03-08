@@ -52,6 +52,7 @@ public class MovieController{
     @RequestMapping("/test")
     public Object test(){
         System.out.println("contoll--->" + SelfThread.threadLocal.get());
+        System.out.println(Thread.currentThread().getName());
         return "成功！！！！";
     }
 

@@ -23,6 +23,9 @@ public interface MoviefeignClient {
 
     @RequestMapping("/movie/test")
     ResponseEntity<String> getTestThread();
+
+    @RequestMapping("/lcnMovie/insertValue")
+    String insert();
 }
 
 /**
@@ -46,6 +49,11 @@ class FeignClientFallback implements MoviefeignClient{
 
     @Override
     public ResponseEntity<String> getTestThread() {
+        return null;
+    }
+
+    @Override
+    public String insert() {
         return null;
     }
 }

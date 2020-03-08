@@ -1,5 +1,6 @@
 package com.cloud.user;
 
+import com.codingapi.txlcn.tc.config.EnableDistributedTransaction;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 @MapperScan("com.cloud.user.mapper")
 //@EnableHystrix
 //@EnableCircuitBreaker 熔断超时保护
+@EnableDistributedTransaction // lcn分布式事务开启
 public class UserApplication {
 
     @Bean

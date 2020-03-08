@@ -1,17 +1,16 @@
 server:
-  port: 8082
+  port: 8083
 
 spring:
   profiles:
     active: db
-  #basic 认证 账户密码
   security:
     user:
       name: admin
       password: admin
   application:
     # 注册到 Eureka Server 的名称
-    name: micro-provider-movie
+    name: micro-provider-shop
   rabbitmq:
     host: localhost
     port: 5672
@@ -24,7 +23,16 @@ eureka:
   client:
     service-url:
       defaultZone: http://152.136.190.118:9300/eureka/
+# 负载均衡配置
+micro-provider-movie:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+# feign 日志配置
+logging:
+  level:
+    com.cloud.user.feign.MoviefeignClient: DEBUG
 
-tx-lcn:
-  client:
-    manager-address: 127.0.0.1:8070
+#management:
+#  endpoint:
+#    health:
+#      show-details: always

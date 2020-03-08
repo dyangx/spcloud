@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.cloud</groupId>
-    <artifactId>movie</artifactId>
+    <artifactId>shop</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>movie</name>
+    <name>shop</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -21,10 +21,10 @@
 
     <dependencies>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -127,15 +127,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>com/cloud/movie/mapper/test1/xml/*.xml</include>
-                    <include>com/cloud/movie/mapper/test2/xml/*.xml</include>
-                </includes>
-            </resource>
-        </resources>
     </build>
 
     <repositories>
@@ -145,6 +136,5 @@
             <url>https://repo.spring.io/milestone</url>
         </repository>
     </repositories>
-
 
 </project>

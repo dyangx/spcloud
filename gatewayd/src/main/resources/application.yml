@@ -1,11 +1,15 @@
 
 server:
-  port: 8070
+  port: 7970
 
 spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
   application:
     # 注册到 Eureka Server 的名称
-    name: micro-provider-gateway
+    name: TransactionManager
   rabbitmq:
     host: localhost
     port: 5672
@@ -29,12 +33,11 @@ spring:
           filters:
             - StripPrefix=0
 
-
 eureka:
   instance:
     # true 将自己ip注册到 Eureka Server上，false 将hostname注册到Eureka Server上，默认false
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://152.136.190.118:9300/eureka/
 
