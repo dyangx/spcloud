@@ -4,6 +4,7 @@ import com.cloud.movie.mapper.test1.LcnMovieMapper;
 import com.cloud.movie.service.LcnMovieService;
 import com.codingapi.txlcn.common.util.Transactions;
 import com.codingapi.txlcn.tc.annotation.DTXPropagation;
+import com.codingapi.txlcn.tc.annotation.TccTransaction;
 import com.codingapi.txlcn.tc.annotation.TxcTransaction;
 import com.codingapi.txlcn.tc.core.DTXLocalContext;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class LcnMovieServiceImpl implements LcnMovieService {
 
     @Override
     @Transactional( transactionManager = "manager1")
-    @TxcTransaction(propagation = DTXPropagation.SUPPORTS)
+    @TccTransaction(propagation = DTXPropagation.SUPPORTS)
     public String insertValue() {
         lcnMovieMapper.insert();
         System.err.println(DTXLocalContext.getOrNew().getGroupId() + Transactions.APPLICATION_ID_WHEN_RUNNING);

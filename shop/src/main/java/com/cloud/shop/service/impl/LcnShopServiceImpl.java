@@ -5,6 +5,7 @@ import com.cloud.shop.service.LcnShopService;
 import com.codingapi.txlcn.common.util.Transactions;
 import com.codingapi.txlcn.tc.annotation.DTXPropagation;
 import com.codingapi.txlcn.tc.annotation.TccTransaction;
+import com.codingapi.txlcn.tc.annotation.TxcTransaction;
 import com.codingapi.txlcn.tc.core.DTXLocalContext;
 import com.codingapi.txlcn.tracing.TracingContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class LcnShopServiceImpl implements LcnShopService {
     private ConcurrentHashMap<String, Long> ids = new ConcurrentHashMap<>();
 
     @Override
-    @TccTransaction(propagation = DTXPropagation.SUPPORTS)
+    @TxcTransaction(propagation = DTXPropagation.SUPPORTS)
     @Transactional
     public String insrtValue() {
         lcnShopMapper.insert();
@@ -38,5 +39,6 @@ public class LcnShopServiceImpl implements LcnShopService {
     public void cancelRpc(String value) {
         Long kid = ids.get(TracingContext.tracing().groupId());
 //        demoMapper.deleteByKId(kid);
+        System.out.println(kid);
     }
 }

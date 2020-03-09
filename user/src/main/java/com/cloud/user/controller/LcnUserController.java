@@ -14,6 +14,6 @@ public class LcnUserController {
 
     @RequestMapping("/insert")
     public String insertValue(String go){
-        return lcnUserService.insertValue(String go);
+        return lcnUserService.insertValue(go);
     }
 }
