@@ -43,3 +43,7 @@ spring:
 
 mybatis-plus:
   mapper-locations: classpath*:/com/cloud/user/mapper/xml/*.xml
+
+tx-lcn:
+  client:
+    manager-address: 127.0.0.1:8070

@@ -15,8 +15,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
-@Configuration
-@MapperScan(basePackages = "com.cloud.movie.mapper.test2", sqlSessionFactoryRef = "test2SqlSessionFactory")
+//@Configuration
+//@MapperScan(basePackages = "com.cloud.movie.mapper.test2", sqlSessionFactoryRef = "test2SqlSessionFactory")
 public class DataSourceConfig2 {
 
     @Bean(name = "test2DataSource")

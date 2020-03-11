@@ -1,13 +1,50 @@
 
+# DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
 spring:
   datasource:
-    test1:
-      jdbc-url : jdbc:mysql://152.136.190.118:33061/spcloud-movie?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
-      username: root
-      password: mysql88
-      driver-class-name: com.mysql.cj.jdbc.Driver
-    test2:
-      jdbc-url : jdbc:mysql://152.136.190.118:33061/db2?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
-      username: root
-      password: mysql88
-      driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://152.136.190.118:33061/spcloud-movie?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+    username: root
+    password: mysql88
+
+    # Tomcat datasource specific settings
+    # org.apache.tomcat.jdbc.pool.DataSource  org.apache.tomcat.jdbc.pool.PoolProperties
+    #初始化连接: 连接池启动时创建的初始化连接数量
+    tomcat:
+      initial-size: 5
+      #最大活动连接: 连接池在同一时间能够分配的最大活动连接的数量,如果设置为非正数则表示不限制
+      max-active: 60
+      #最大空闲连接: 连接池中容许保持空闲状态的最大连接数量, 超过的空闲连接将被释放, 如果设置为负数表示不限制
+      max-idle: 10
+      #最小空闲连接: 连接池中容许保持空闲状态的最小连接数量, 低于这个数量将创建新的连接, 如果设置为0则不创建.默认与initialSize相同
+      min-idle: 5
+      # 最大等待时间: 当没有可用连接时, 连接池等待连接被归还的最大时间( 以毫秒计数), 超过时间则抛出异常, 如果设置为-1 表示无限等待单位毫秒
+      max-wait: 5000
+      #是否对空闲连接进行校验，如果检测失败, 则连接将被从池中去除.注意: 设置为true 后如果要生效,validationQuery 参数必须设置为非空字符串
+      test-while-idle: true
+      #SQL 查询, 用来验证从连接池取出的连接
+      validation-query: SELECT 1
+      #空闲连接回收器执行间隔，单位毫秒
+      time-between-eviction-runs-millis: 31000
+      # Validate the connection before borrowing it from the pool.
+      test-on-borrow: true
+      #校验查询超时时间以秒为单位
+      validation-query-timeout: 10
+      #避免过度验证，保证验证不超过这个频率——以毫秒为单位
+      validation-interval: 30000
+      #空闲连接能够保持空闲的最小时间，单位毫秒，在这个区间不会被回收器回收
+      min-evictable-idle-time-millis: 120000
+      #空闲连接回收器的执行线程数
+      num-tests-per-eviction-run: 10
+      #检查连接是否泄漏（一般是因为没有关闭连接）,如果他们超过了removeAbandonedTimout 的限制.如果设置为true, 连接被认为是被泄露并且可以被删除,
+      remove-abandoned: true
+      #连接多久没有释放则认为是泄漏线程
+      remove-abandoned-timeout: 180
+
+mybatis-plus:
+  mapper-locations: classpath*:/com/cloud/movie/mapper/*/*.xml
+
+
+tx-lcn:
+  client:
+    manager-address: 127.0.0.1:8070
