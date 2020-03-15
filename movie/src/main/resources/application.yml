@@ -17,7 +17,11 @@ spring:
     port: 5672
     username: guest
     password: guest
-eureka:
+
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
   instance:
     # true 将自己ip注册到 Eureka Server上，false 将hostname注册到Eureka Server上，默认false
     prefer-ip-address: true
@@ -28,3 +32,4 @@ eureka:
 tx-lcn:
   client:
     manager-address: 127.0.0.1:8070
+

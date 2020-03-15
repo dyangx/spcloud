@@ -20,7 +20,7 @@ public class LcnMovieServiceImpl implements LcnMovieService {
 
     private LcnMovieMapper lcnMovieMapper;
 
-    private ConcurrentHashMap<String, Set<Long>> ids = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, Long> ids = new ConcurrentHashMap<>();
 
     @Resource
     void setServie(LcnMovieMapper lcnMovieMapper){
@@ -30,25 +30,19 @@ public class LcnMovieServiceImpl implements LcnMovieService {
     @Override
 //    @Transactional( transactionManager = "manager1")
     @TccTransaction(propagation = DTXPropagation.SUPPORTS)
-    @Transactional
     public String insertValue() {
         lcnMovieMapper.insert();
-        System.err.println(DTXLocalContext.getOrNew().getGroupId() + Transactions.APPLICATION_ID_WHEN_RUNNING);
-
+        ids.put(TracingContext.tracing().groupId(), 123456L);
         return "lcn-movie-ok!";
     }
 
 
     public void confirmRpc(String value) {
-        ids.get(TracingContext.tracing().groupId()).forEach(id -> {
-            System.out.println(id);
-            ids.get(TracingContext.tracing().groupId()).remove(id);
-        });
+        ids.remove(TracingContext.tracing().groupId());
     }
 
     public void cancelRpc(String value) {
-        ids.get(TracingContext.tracing().groupId()).forEach(id -> {
-            System.out.println(id);
-        });
+        Long kid = ids.get(TracingContext.tracing().groupId());
+        System.err.println(kid);
     }
 }

@@ -16,6 +16,11 @@ spring:
     port: 5672
     username: guest
     password: guest
+
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
 eureka:
   instance:
     # true 将自己ip注册到 Eureka Server上，false 将hostname注册到Eureka Server上，默认false

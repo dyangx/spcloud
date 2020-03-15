@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@EnableDiscoveryClient
-@EnableDistributedTransaction //lcn open
+//@EnableDiscoveryClient
+//@EnableDistributedTransaction //lcn open
 @MapperScan(basePackages = "com.cloud.movie.mapper")
 public class MovieApplication {
 

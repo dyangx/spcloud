@@ -9,6 +9,7 @@ import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import com.codingapi.txlcn.tc.core.DTXLocalContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -26,6 +27,7 @@ public class LcnUserServiceImpl implements LcnUserService {
 
     @Override
     @LcnTransaction
+    @Transactional
     public String insertValue(String go) {
         String shop = shopFeignClient.insertValue();
         String movie = moviefeignClient.insert();
