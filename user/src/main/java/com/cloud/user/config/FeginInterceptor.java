@@ -7,6 +7,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -18,6 +19,7 @@ public class FeginInterceptor implements RequestInterceptor {
     public void apply(RequestTemplate requestTemplate) {
         try {
             Map<String,String> headers = getHeaders();
+            System.out.println(requestTemplate.queries());
             for(String headerName : headers.keySet()){
                 requestTemplate.header(headerName, headers.get(headerName));
             }
@@ -34,8 +36,8 @@ public class FeginInterceptor implements RequestInterceptor {
             String value = request.getHeader(key);
             map.put(key, value);
         }
-        map.put("tokenId","123456789");
-        System.err.println(map);
+        HttpSession session = request.getSession();
+        System.err.println(session.getId());
         return map;
     }
 }
