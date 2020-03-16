@@ -11,7 +11,7 @@ spring:
       password: admin
   application:
     # 注册到 Eureka Server 的名称
-    name: micro-provider-shopp
+    name: micro-provider-shop
   rabbitmq:
     host: localhost
     port: 5672

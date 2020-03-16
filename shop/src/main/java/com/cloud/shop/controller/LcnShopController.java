@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/lcnShop2")
+@RequestMapping("/lcnShop")
 public class LcnShopController {
 
     @Autowired
     private LcnShopService lcnShopService;
 
-    @RequestMapping("insertValue")
+    @RequestMapping("insert")
     public String inserValue(){
         return lcnShopService.insrtValue();
     }

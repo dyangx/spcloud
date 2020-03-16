@@ -4,6 +4,7 @@ import com.cloud.movie.mapper.test1.LcnMovieMapper;
 import com.cloud.movie.service.LcnMovieService;
 import com.codingapi.txlcn.common.util.Transactions;
 import com.codingapi.txlcn.tc.annotation.DTXPropagation;
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import com.codingapi.txlcn.tc.annotation.TccTransaction;
 import com.codingapi.txlcn.tc.annotation.TxcTransaction;
 import com.codingapi.txlcn.tc.core.DTXLocalContext;
@@ -28,21 +29,10 @@ public class LcnMovieServiceImpl implements LcnMovieService {
     }
 
     @Override
-//    @Transactional( transactionManager = "manager1")
-    @TccTransaction(propagation = DTXPropagation.SUPPORTS)
+    @Transactional
+    @LcnTransaction
     public String insertValue() {
         lcnMovieMapper.insert();
-        ids.put(TracingContext.tracing().groupId(), 123456L);
         return "lcn-movie-ok!";
-    }
-
-
-    public void confirmRpc(String value) {
-        ids.remove(TracingContext.tracing().groupId());
-    }
-
-    public void cancelRpc(String value) {
-        Long kid = ids.get(TracingContext.tracing().groupId());
-        System.err.println(kid);
     }
 }

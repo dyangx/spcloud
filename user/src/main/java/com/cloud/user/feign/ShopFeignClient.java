@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @FeignClient(name = "micro-provider-shop")
 public interface ShopFeignClient {
 
-    @RequestMapping("/lcnShop/inserValue")
+    @RequestMapping("/lcnShop/insert")
     String insertValue();
 }
