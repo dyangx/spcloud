@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: db
+    active: db,eureka
   #basic 认证 账户密码
   security:
     user:
@@ -17,10 +17,4 @@ spring:
     port: 5672
     username: guest
     password: guest
-eureka:
-  instance:
-    # true 将自己ip注册到 Eureka Server上，false 将hostname注册到Eureka Server上，默认false
-    prefer-ip-address: true
-  client:
-    service-url:
-      defaultZone: http://152.136.190.118:9300/eureka/
+
