@@ -3,11 +3,4 @@ spring:
     consul:
       host: 152.136.190.118
       port: 9200
-      discovery:
-        tags: dev
-        service-name: micro-provider-user
-        health-check-path: /actuator/health
-        health-check-interval: 10s
-        register: true
-        ip-address: false
 
