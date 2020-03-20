@@ -1,0 +1,8 @@
+
+
+spring:
+  redis:
+    host: 152.136.190.118
+    port: 63791
+    password: password
+
