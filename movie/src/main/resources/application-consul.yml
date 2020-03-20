@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    consul:
+      host: 152.136.190.118
+      port: 9200
+
