@@ -1,9 +1,10 @@
 package com.cloud.rabbit.controller;
 
 import com.cloud.common.service.CommonService;
+import com.cloud.common.service.SimpleService;
 import com.cloud.rabbit.publisher.Publisher;
+import com.cloud.rabbit.service.RabbitSimpleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,12 @@ public class RabbitContoller {
 
     @Autowired
     CommonService commonService;
+
+    @Autowired
+    SimpleService simpleService;
+
+//    @Autowired
+    RabbitSimpleService rabbitSimpleService;
 
     @RequestMapping("push")
     public Object push(String msg,String type){
@@ -35,6 +42,12 @@ public class RabbitContoller {
     @RequestMapping("common")
     public Object common(){
         commonService.say();
+        return "sss";
+    }
+
+    @RequestMapping("simple")
+    public Object simple(){
+        simpleService.say();
         return "sss";
     }
 }
