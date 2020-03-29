@@ -1,5 +1,6 @@
 package com.cloud.rabbit.controller;
 
+import com.cloud.common.service.CommonService;
 import com.cloud.rabbit.publisher.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
@@ -15,6 +16,9 @@ public class RabbitContoller {
     @Autowired
     Publisher publisher;
 
+    @Autowired
+    CommonService commonService;
+
     @RequestMapping("push")
     public Object push(String msg,String type){
         System.out.println(new Date());
@@ -26,5 +30,11 @@ public class RabbitContoller {
     public Object pushBatch(){
         publisher.publishBatch();
         return "ok!";
+    }
+
+    @RequestMapping("common")
+    public Object common(){
+        commonService.say();
+        return "sss";
     }
 }
