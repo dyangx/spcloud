@@ -21,4 +21,10 @@ public class RabbitContoller {
         publisher.publish(msg,type);
         return "ok!";
     }
+
+    @RequestMapping("pushBatch")
+    public Object pushBatch(){
+        publisher.publishBatch();
+        return "ok!";
+    }
 }

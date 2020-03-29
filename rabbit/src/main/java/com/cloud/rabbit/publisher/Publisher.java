@@ -21,4 +21,12 @@ public class Publisher {
         }
     }
 
+    public void publishBatch() {
+        int i = 0;
+        while (i < 50){
+            rabbitTemplate.convertAndSend(RabbbitConfig.LIND_EXCHANGE, RabbbitConfig.LIND_QUEUE,"我是消息："+i);
+            i++;
+        }
+    }
+
 }
