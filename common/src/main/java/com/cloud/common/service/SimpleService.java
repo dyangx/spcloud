@@ -5,7 +5,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class SimpleService implements BeanFactoryAware {
     private BeanFactory beanFactory;
 
@@ -16,6 +16,7 @@ public class SimpleService implements BeanFactoryAware {
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
         this.beanFactory = beanFactory;
+        System.out.println("init factory......");
     }
 
     public void say(){

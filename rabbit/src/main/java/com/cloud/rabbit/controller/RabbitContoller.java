@@ -3,6 +3,7 @@ package com.cloud.rabbit.controller;
 import com.cloud.common.service.CommonService;
 import com.cloud.common.service.SimpleService;
 import com.cloud.rabbit.publisher.Publisher;
+import com.cloud.rabbit.service.RabbitService;
 import com.cloud.rabbit.service.RabbitSimpleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
