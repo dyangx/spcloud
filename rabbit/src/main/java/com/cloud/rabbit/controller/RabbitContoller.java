@@ -1,6 +1,7 @@
 package com.cloud.rabbit.controller;
 
 import com.cloud.common.service.CommonService;
+import com.cloud.common.service.DService;
 import com.cloud.common.service.SimpleService;
 import com.cloud.rabbit.publisher.Publisher;
 import com.cloud.rabbit.service.RabbitService;
@@ -18,11 +19,14 @@ public class RabbitContoller {
     @Autowired
     Publisher publisher;
 
-    @Autowired
+//    @Autowired
     CommonService commonService;
 
     @Autowired
     SimpleService simpleService;
+
+    @Autowired
+    DService dService;
 
 //    @Autowired
     RabbitSimpleService rabbitSimpleService;
@@ -50,5 +54,10 @@ public class RabbitContoller {
     public Object simple(){
         simpleService.say();
         return "sss";
+    }
+
+    @RequestMapping("laiya")
+    public Object laiya(){
+        return dService.say();
     }
 }
