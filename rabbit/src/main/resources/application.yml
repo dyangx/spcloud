@@ -6,3 +6,5 @@ spring:
     port: 63791
     password: password
 
+common:
+  requrl: active
