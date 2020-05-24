@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: db,consul
+    active: db,eureka
   #basic 认证 账户密码
   security:
     user:
