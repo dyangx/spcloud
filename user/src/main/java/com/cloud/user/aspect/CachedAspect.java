@@ -64,7 +64,7 @@ public class CachedAspect {
         Expression expression = parser.parseExpression(cached.key(),new TemplateParserContext());
         Parameter[] parameters = method.getParameters();
         for(int i=0;i<parameters.length;i++){
-            context.setVariable(parameters[i].getName(),args[0]);
+            context.setVariable(parameters[i].getName(),args[i]);
         }
         String key_ = expression.getValue(context, String.class);
         if(StringUtils.isNotEmpty(cached.name())){
