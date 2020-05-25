@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.cloud.user.annotation.Cached;
 import com.cloud.user.vo.User;
+import org.apache.commons.lang.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -25,6 +26,7 @@ import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -32,51 +34,43 @@ import java.util.concurrent.TimeUnit;
 public class CachedAspect {
 
     @Autowired
-    private RedisTemplate redisTemplate;
-
-    @Autowired
     private StringRedisTemplate stringRedisTemplate;
-    private SourceLocation sourceLocation;
 
     @Around("execution(public * com.cloud.user.feign.*.*(..))")
-    public Object around(ProceedingJoinPoint point){
-        try {
-            // 方法签名
-            MethodSignature ms = (MethodSignature) point.getSignature();
-            Method method = ms.getMethod();
-            Cached cached = method.getDeclaredAnnotation(Cached.class);
-            if(cached == null){
-                return point.proceed();
-            }
-            String name = getName(cached,method,point.getArgs());
-            long expiry = cached.expiry();
-            for(Object o: method.getParameters()){
-                System.out.println(o);
-            }
-            String s = stringRedisTemplate.opsForValue().get(name);
-            if(s != null){
-                return JSONObject.parseObject(s,Object.class);
-            }
-            Object object = point.proceed();
-            String res = JSON.toJSONString(object);
-            stringRedisTemplate.opsForValue().set(name, res, expiry, TimeUnit.SECONDS);
-            return object;
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
+    public Object around(ProceedingJoinPoint point) throws Throwable {
+        // 方法签名
+        MethodSignature ms = (MethodSignature) point.getSignature();
+        Method method = ms.getMethod();
+        Cached cached = method.getDeclaredAnnotation(Cached.class);
+        if(cached == null){
+            return point.proceed();
         }
-        return null;
-
+        String name = getCachedName(cached,method,point.getArgs());
+        String s = stringRedisTemplate.opsForValue().get(name);
+        if(s != null){
+            return JSONObject.parseObject(s,Object.class);
+        }
+        Object object = point.proceed();
+        String res = JSON.toJSONString(object);
+        long expiry = cached.expiry();
+        stringRedisTemplate.opsForValue().set(name, res, expiry, TimeUnit.SECONDS);
+        return object;
     }
 
-    private static String getName(Cached cached,Method method,Object[] args){
-        String key = cached.key();
+    private static String getCachedName(Cached cached,Method method,Object[] args){
         // spel 解析
         ExpressionParser parser = new SpelExpressionParser();
         EvaluationContext context = new StandardEvaluationContext();
         Expression expression = parser.parseExpression(cached.key(),new TemplateParserContext());
-        expression.getValue(context, String.class);
-        return null;
-
+        Parameter[] parameters = method.getParameters();
+        for(int i=0;i<parameters.length;i++){
+            context.setVariable(parameters[i].getName(),args[0]);
+        }
+        String key_ = expression.getValue(context, String.class);
+        if(StringUtils.isNotEmpty(cached.name())){
+            return cached.name() + "::" +key_;
+        }
+        return key_;
     }
 
 }
