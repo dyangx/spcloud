@@ -19,10 +19,11 @@ import java.util.Map;
 public interface MoviefeignClient {
 
     @RequestMapping("/movie/getMovie")
-    @Cached(name = "getMovie",expiry = 60)
+    @Cached(name = "getMovie::#hh",expiry = 60)
     Object getMovie(String hh);
 
     @RequestMapping("/test/getHtml")
+
     ResponseEntity<String> getHtml();
 }
 
