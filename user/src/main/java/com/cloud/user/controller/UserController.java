@@ -60,7 +60,7 @@ public class UserController {
 
     @RequestMapping("/getMoiveFromFeign")
     public Object getMoiveFromFeign(){
-        return moviefeignClient.getMovie();
+        return moviefeignClient.getMovie("马杀鸡");
     }
 
     /**
@@ -77,7 +77,7 @@ public class UserController {
     })
     @RequestMapping("/getMoiveFromFeignWithHystrix")
     public Object getMoiveFromFeignWithHystrix(){
-        return moviefeignClient.getMovie();
+        return moviefeignClient.getMovie("ss");
     }
 
     public Object getMovieHystrix(){

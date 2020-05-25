@@ -1,5 +1,8 @@
 package com.cloud.user.feign;
 
+import com.cloud.user.annotation.Cached;
+import com.cloud.user.vo.User;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -16,7 +19,8 @@ import java.util.Map;
 public interface MoviefeignClient {
 
     @RequestMapping("/movie/getMovie")
-    Object getMovie();
+    @Cached(name = "getMovie",expiry = 60)
+    Object getMovie(String hh);
 
     @RequestMapping("/test/getHtml")
     ResponseEntity<String> getHtml();
@@ -24,12 +28,13 @@ public interface MoviefeignClient {
 
 /**
  *  feign 回退
+ *
  */
 @Component
 class FeignClientFallback implements MoviefeignClient{
 
     @Override
-    public Object getMovie() {
+    public Object getMovie(String hh) {
         Map<String,Object> map = new HashMap<>();
         map.put("mv","123456");
         map.put("date",new Date());
@@ -37,6 +42,7 @@ class FeignClientFallback implements MoviefeignClient{
     }
 
     @Override
+    @Cacheable
     public ResponseEntity<String> getHtml() {
         return null;
     }
