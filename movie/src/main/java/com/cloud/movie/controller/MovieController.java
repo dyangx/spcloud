@@ -5,7 +5,9 @@ import com.cloud.movie.service.TestService;
 import com.cloud.movie.vo.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
@@ -30,6 +32,12 @@ public class MovieController{
 //        if(true) {
 //            throw new RuntimeException("123");
 //        }
+        return m;
+    }
+
+    @RequestMapping(value = "/getMv",method = RequestMethod.POST)
+    public Object getMv(@RequestBody Movie m){
+        m.setDiscrption("123456789");
         return m;
     }
 

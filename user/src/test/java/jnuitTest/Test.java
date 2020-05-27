@@ -50,5 +50,15 @@ public class Test {
         System.out.println(expression.getValue(context, String.class));
     }
 
+    @org.junit.Test
+    public void test3(){
+        String ss = new String("123456");
+        ss.intern();
+        String s = "123456";
+        System.out.println(s == ss);
+//        s.intern();
+
+    }
+
 
 }

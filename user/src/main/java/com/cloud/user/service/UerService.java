@@ -7,4 +7,6 @@ import java.util.List;
 public interface UerService {
 
     List<User> selectUser();
+
+    Long deleteCache();
 }
