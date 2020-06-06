@@ -10,6 +10,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -31,11 +32,11 @@ public class CachedAspect {
 
     @Around("execution(public * com.cloud.user.feign.*.*(..))")
     public Object around(ProceedingJoinPoint point){
+        // 方法签名
+        MethodSignature ms = (MethodSignature) point.getSignature();
+        Method method = ms.getMethod();
+        Cached cached = method.getDeclaredAnnotation(Cached.class);
         try {
-            // 方法签名
-            MethodSignature ms = (MethodSignature) point.getSignature();
-            Method method = ms.getMethod();
-            Cached cached = method.getDeclaredAnnotation(Cached.class);
             if(cached == null){
                 return point.proceed();
             }
