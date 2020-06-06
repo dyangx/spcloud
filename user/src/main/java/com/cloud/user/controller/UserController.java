@@ -1,10 +1,13 @@
 package com.cloud.user.controller;
 
 import com.cloud.user.feign.MoviefeignClient;
+import com.cloud.user.service.UerService;
+import com.cloud.user.vo.Movie;
 import com.cloud.user.vo.User;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -24,6 +27,9 @@ public class UserController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private UerService uerService;
 
     @Autowired
     private DiscoveryClient discoveryClient;
@@ -63,6 +69,18 @@ public class UserController {
         return moviefeignClient.getMovie("马杀鸡");
     }
 
+    @RequestMapping("/getMv")
+    public Object getMv(){
+        Movie mv = new Movie();
+        mv.setId("123456789");
+        mv.setName("dyangxxxxxxxxxxxxxx");
+        return moviefeignClient.getv(mv);
+    }
+    @RequestMapping("/deleteCache")
+    public Object deleteCache(){
+        return uerService.deleteCache();
+    }
+
     /**
      *
      * @return
@@ -80,6 +98,7 @@ public class UserController {
         return moviefeignClient.getMovie("ss");
     }
 
+    @Cacheable
     public Object getMovieHystrix(){
         Map<String,Object> map = new HashMap<>();
         map.put("mv","123456");
