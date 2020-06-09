@@ -12,6 +12,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -23,6 +24,7 @@ import org.springframework.web.client.RestTemplate;
 //@EnableHystrix
 //@EnableCircuitBreaker 熔断超时保护
 @RestController
+@EnableAsync
 public class UserApplication {
 
     @Autowired
@@ -40,7 +42,7 @@ public class UserApplication {
 
     @RequestMapping("/test")
     public void test() throws InterruptedException {
-        testComp.end();
+//        testComp.end();
     }
 
 }

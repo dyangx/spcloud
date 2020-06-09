@@ -1,5 +1,6 @@
 package com.cloud.user.controller;
 
+import com.cloud.log.biz.ParamBiz;
 import com.cloud.user.feign.MoviefeignClient;
 import com.cloud.user.service.UerService;
 import com.cloud.user.vo.Movie;
@@ -11,6 +12,9 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -40,10 +44,22 @@ public class UserController {
     @Resource
     private MoviefeignClient moviefeignClient;
 
+    @Autowired(required = false)
+    private ParamBiz paramBiz;
+
+
     @RequestMapping("/getUser")
-    public User getUser(){
+    public User getUser(String id,String name){
         User u = new User("123","snoopy","18380807927","四川成都");
+        System.out.println(paramBiz);
         return u;
+    }
+
+    @PostMapping(value = "/getUserInfo",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public User getUserInfo(@RequestBody User user){
+        User u = new User("123","snoopy","18380807927","四川成都");
+        System.out.println(user);
+        return user;
     }
 
     @RequestMapping(value = "/getMovieFromUser")

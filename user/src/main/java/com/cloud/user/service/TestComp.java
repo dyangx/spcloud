@@ -22,7 +22,7 @@ public class TestComp {
             String s = ""+in;
             b.add(new byte[2048]);
             Thread.sleep(1000);
-            System.out.println("index: " +in +" 占用内存： "+RamUsageEstimator.humanSizeOf(b));
+            System.out.println("index: " +in +" 占用内存： "+RamUsageEstimator.shallowSizeOf(b));
         }
     }
 }

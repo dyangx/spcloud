@@ -13,6 +13,6 @@ public class Movie implements Serializable {
     private String id;
     private String name;
     private String discrption;
-    private Date date;
+//    private Date date;
 
 }
