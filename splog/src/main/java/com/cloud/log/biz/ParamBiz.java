@@ -1,23 +1,20 @@
 package com.cloud.log.biz;
 
-import com.cloud.log.util.ExceptionUtil;
-import com.cloud.log.util.JacksonUtil;
-import com.cloud.log.util.LogUtil;
+import com.cloud.log.dto.ReqDto;
+import com.cloud.log.util.*;
+import com.cloud.log.vo.Page;
 import com.cloud.log.vo.RequestVO;
-import org.aspectj.lang.ProceedingJoinPoint;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
  * @author: yangjie
- * @date: Created in 2020/6/9 9:49
+ * @date: Created in 2020/6/9
  */
 @Component
 public class ParamBiz {
@@ -25,39 +22,39 @@ public class ParamBiz {
     @Value("${sp.log.print-info}")
     private Boolean print;
 
+    @Value("${sp.log.mongo.save}")
+    private Boolean save;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
     @Async
-    public void handle(Long startTime, ProceedingJoinPoint point, Object value, HttpServletRequest request,Throwable e){
-        Object[] args = point.getArgs();
-        List<Object> params = new ArrayList<>();
-        for (int i = 0; i < args.length; i++) {
-            Object object = args[i];
-            if (object instanceof HttpServletResponse) {
-                continue;
-            }
-            if (object instanceof HttpServletRequest) {
-                continue;
-            }
-            params.add(object);
-        }
-        String methodName = point.getSignature().getName();
-        String reqParam = JacksonUtil.toJsonString(params);
+    public void handle(Object value, Throwable e,RequestVO vo){
         String resParam = JacksonUtil.toJsonString(value);
-        Long execTime = System.currentTimeMillis() - startTime;
-        RequestVO vo = RequestVO.builder().method(methodName)
-                .methodDescription(point.getSignature().getDeclaringTypeName())
-                .reqParam(reqParam).exception(0)
-                .startTime(new Date(startTime))
-                .execTime(execTime).reqtUrl(request.getRequestURI())
-                .resParam(resParam).build();
+        Long execTime = System.currentTimeMillis() - vo.getTime().getTime();
+        vo.setRes_param(resParam);
+        vo.setExec_time(execTime);
         if(e != null){
-            vo.setException(1);
+            vo.setException((byte) 1);
             String exception = ExceptionUtil.writeAsString(e);
-            vo.setExceptionDescription(exception);
+            vo.setException_description(exception);
         }
         if(print){
             LogUtil.print(vo);
         }
+        if(save){
+            mongoTemplate.insert(vo);
+        }
     }
 
+    public Page<RequestVO> find(ReqDto dto){
+        MongoQuery mongoQuery = MongoQuery.create()
+                .is("method",dto.getMethod())
+                .gt("time",DateUtil.toUTC(dto.getStartTime()));
+        List<RequestVO> list = mongoTemplate.find(mongoQuery,RequestVO.class);
+        System.out.println(list);
+
+        return new Page<RequestVO>(list);
+    }
 
 }

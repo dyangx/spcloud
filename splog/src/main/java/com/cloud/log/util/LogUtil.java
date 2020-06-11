@@ -6,20 +6,20 @@ import java.util.Objects;
 
 /**
  * @author: yangjie
- * @date: Created in 2020/6/9 11:11
+ * @date: Created in 2020/6/9
  */
 public class LogUtil {
 
     public static void print(RequestVO vo){
         StringBuffer sb = new StringBuffer("");
-        sb.append("请求路径："+vo.getReqtUrl());
-        sb.append(lightYourCode("请求参数：",vo.getReqParam()));
-        if(Objects.equals(vo.getException(),0)){
-            sb.append(lightYourCode("返回参数：",vo.getResParam()));
+        sb.append("请求路径："+vo.getReq_url());
+        sb.append(lightYourCode("请求参数：",vo.getReq_param()));
+        if(Objects.equals(vo.getException(),(byte)0)){
+            sb.append(lightYourCode("返回参数：",vo.getRes_param()));
         }else {
-            sb.append("\033[0;31m 返回参数："+ "Exception \033[0m");
+            sb.append("\n\033[0;31m 返回参数："+ "Exception \033[0m");
         }
-        sb.append("\n耗时："+vo.getExecTime());
+        sb.append("\n耗时："+vo.getExec_time());
         System.out.println(sb.toString());
     }
 

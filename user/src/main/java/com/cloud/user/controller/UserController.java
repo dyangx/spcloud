@@ -57,8 +57,8 @@ public class UserController {
 
     @PostMapping(value = "/getUserInfo",consumes = MediaType.APPLICATION_JSON_VALUE)
     public User getUserInfo(@RequestBody User user){
+        user.getPhone().equals(1);
         User u = new User("123","snoopy","18380807927","四川成都");
-        System.out.println(user);
         return user;
     }
 

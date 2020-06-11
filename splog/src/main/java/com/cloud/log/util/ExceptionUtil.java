@@ -6,7 +6,7 @@ import java.io.PrintStream;
 
 /**
  * @author: yangjie
- * @date: Created in 2020/6/9 10:47
+ * @date: Created in 2020/6/9
  */
 public class ExceptionUtil {
 

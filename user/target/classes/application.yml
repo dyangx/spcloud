@@ -20,6 +20,10 @@ spring:
     port: 5672
     username: guest
     password: guest
+
+  data:
+    mongodb:
+      database: sp-log
 # 负载均衡配置
 micro-provider-user:
   ribbon:
@@ -38,3 +42,7 @@ sp:
   log:
     enabled: true
     print-info: true
+    mongo:
+      save: true
+
+
