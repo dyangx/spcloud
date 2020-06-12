@@ -19,7 +19,7 @@ public class Page<T> {
 
     private int size = 10;
 
-    private int total = 0;
+    private long total = 0;
 
     private List<T> record = Collections.EMPTY_LIST;
 
@@ -30,6 +30,4 @@ public class Page<T> {
         this.record = record;
         this.total = this.record.size();
     }
-
-
 }

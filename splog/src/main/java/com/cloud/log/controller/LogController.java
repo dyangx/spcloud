@@ -5,6 +5,7 @@ import com.cloud.log.dto.ReqDto;
 import com.cloud.log.vo.Page;
 import com.cloud.log.vo.RequestVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,8 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/spLog")
-public class CommonController {
+@Qualifier("spLogController")
+public class LogController {
 
     @Autowired
     private ParamBiz paramBiz;

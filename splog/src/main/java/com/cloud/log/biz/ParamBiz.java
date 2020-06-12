@@ -6,6 +6,7 @@ import com.cloud.log.vo.Page;
 import com.cloud.log.vo.RequestVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,9 @@ public class ParamBiz {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+
+    @Autowired
+    private MongoTemplateBiz mongoTemplateBiz;
 
     @Async
     public void handle(Object value, Throwable e,RequestVO vo){
@@ -50,11 +54,10 @@ public class ParamBiz {
     public Page<RequestVO> find(ReqDto dto){
         MongoQuery mongoQuery = MongoQuery.create()
                 .is("method",dto.getMethod())
-                .gt("time",DateUtil.toUTC(dto.getStartTime()));
-        List<RequestVO> list = mongoTemplate.find(mongoQuery,RequestVO.class);
-        System.out.println(list);
-
-        return new Page<RequestVO>(list);
+                .between("time",DateUtil.toUTC(dto.getStartTime()),DateUtil.toUTC(dto.getEndTime()))
+                .with(Sort.by(Sort.Order.desc("time")));
+        System.err.println(mongoQuery);
+        return mongoTemplateBiz.findPage(dto.getPage(),mongoQuery,RequestVO.class);
     }
 
 }

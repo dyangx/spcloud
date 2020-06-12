@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.PostConstruct;
+import java.util.TimeZone;
+
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableFeignClients
@@ -45,4 +48,8 @@ public class UserApplication {
 //        testComp.end();
     }
 
+    @PostConstruct
+    void started() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+    }
 }

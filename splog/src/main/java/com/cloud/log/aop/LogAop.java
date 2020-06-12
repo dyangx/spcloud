@@ -29,7 +29,7 @@ public class LogAop {
     private ParamBiz paramBiz;
 
     //execution(public * com.cloud.*.controller.*.*(..))
-    @Pointcut("bean(*Controller) && !bean(basicErrorController)")
+    @Pointcut("bean(*Controller) && !bean(basicErrorController) && !bean(spLogController)")
     public void pointCut() {
     }
 
