@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
  * @date: Created in 2020/5/13
  */
 
-@Log4j
 @Component
 @Aspect
 public class LogAop {
