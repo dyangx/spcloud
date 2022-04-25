@@ -185,6 +185,28 @@
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
             <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>repository.springframework.maven.release</id>
+            <name>Spring Framework Maven Release Repository</name>
+            <url>https://maven.springframework.org/milestone/</url>
+        </repository>
+        <repository>
+            <id>org.springframework</id>
+            <url> https://maven.springframework.org/snapshot</url>
+        </repository>
+        <repository>
+            <id>spring-milestone</id>
+            <name>Spring Maven MILESTONE Repository</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+        </repository>
+        <repository>
+            <id>spring-release</id>
+            <name>Spring Maven RELEASE Repository</name>
+            <url>https://repo.spring.io/libs-release</url>
         </repository>
     </repositories>
 

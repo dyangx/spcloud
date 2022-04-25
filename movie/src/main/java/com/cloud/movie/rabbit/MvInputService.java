@@ -1,8 +1,6 @@
 package com.cloud.movie.rabbit;
 
 import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Component;
 
 /**
