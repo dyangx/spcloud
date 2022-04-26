@@ -16,10 +16,10 @@ spring:
     # 注册到 Eureka Server 的名称
     name: micro-provider-user
   rabbitmq:
-    host: localhost
+    host: 152.136.190.118
     port: 5672
-    username: guest
-    password: guest
+    username: admin
+    password: ad7927
 # 负载均衡配置
 micro-provider-user:
   ribbon:

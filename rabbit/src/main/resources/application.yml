@@ -6,5 +6,10 @@ spring:
     port: 63791
     password: password
 
+  rabbitmq:
+    host: 152.136.190.118
+    port: 5672
+    username: admin
+    password: ad7927
 common:
   requrl: active
