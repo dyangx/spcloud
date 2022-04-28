@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
@@ -42,6 +43,13 @@ public class UserServiceImpl implements UerService {
         long deleted = redisTemplate.delete(keys);
         System.out.println(deleted);
         return deleted;
+    }
+
+    @Override
+//    @Transactional
+    public void testUser() {
+        userMapper.getOneUser();
+        userMapper.getOneUser();
     }
 
     //    @PostConstruct

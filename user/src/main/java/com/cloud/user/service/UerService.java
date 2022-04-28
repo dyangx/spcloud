@@ -9,4 +9,6 @@ public interface UerService {
     List<User> selectUser();
 
     Long deleteCache();
+
+    void testUser();
 }

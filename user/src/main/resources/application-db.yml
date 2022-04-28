@@ -43,3 +43,5 @@ spring:
 
 mybatis-plus:
   mapper-locations: classpath*:/com/cloud/user/mapper/xml/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
