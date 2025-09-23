@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration = \
-com.cloud.common.config.CommonConfig,\
-com.cloud.common.service.SimpleService

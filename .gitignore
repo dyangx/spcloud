@@ -27,3 +27,7 @@ hs_err_pid*
 *.iws
 *.iml
 *.ipr
+.DS_Store
+*DS_Store
+.vscode/
+order/.DS_Store
